@@ -1,15 +1,12 @@
-# Express Starter 🏁
+# Express TypeORM Starter 🗿
 
-A boilerplate for quickly creating servers using Node.js, Express, and pg-promise.
+A boilerplate for quickly creating servers using Node.js, Express, and TypeORM.
 
 ## File Structure
 
 ```
 ├── config           // Environment variables and other configuration
-├── db               // Data access layer
-│   ├── repos        // pg-promise extensions
-│   ├── sql          // SQL queries
-│   └── types.ts     // Interface models
+├── entities         // ORM Entities
 ├── routes           // API Routes
 ├── services         // Business logic
 ├── utils            // Utility classes & functions
@@ -44,17 +41,6 @@ DB_PASSWORD=    // ex: hunter2
 # Express Variables
 PORT=           // ex: 3000
 ```
-
-Set up your database using Flyway to run migrations – these options can be set within the `flyway.conf` file or exported via terminal
-
-```
-export FLYWAY_URL=          // ex: jdbc:postgresql://localhost:5432/dev_poop
-export FLYWAY_USER=         // ex: dylan
-export FLYWAY_PASSWORD=     // ex: hunter2
-export FLYWAY_LOCATIONS=    // ex: filesystem:.
-```
-
-`flyway migrate`
 
 Run the app in development mode
 
