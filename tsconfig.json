@@ -9,6 +9,8 @@
     "baseUrl": "./src",
     "sourceMap": true,
     "target": "es6",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*"],
   "exlucde": ["node_modules/**/*"]

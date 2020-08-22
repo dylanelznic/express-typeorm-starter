@@ -1,4 +1,4 @@
-import { User } from 'db/models';
+import { User } from 'entities';
 
 /** Services functions for Users */
 export class UsersService {

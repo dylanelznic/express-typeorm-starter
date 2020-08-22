@@ -1,6 +1,7 @@
-import { db } from 'db';
+import { User } from 'entities';
 import { NextFunction, Request, Response, Router } from 'express';
 import { UsersService } from 'services';
+import { getConnection } from 'typeorm';
 import { ResponseError } from 'utils';
 
 const router = Router();
@@ -25,7 +26,8 @@ router.get(
     next: NextFunction,
   ): Promise<Response> => {
     try {
-      const users = await db.users.all();
+      const userRepo = getConnection().getRepository(User);
+      const users = await userRepo.find();
       return res.send(users);
     } catch (e) {
       next(e);
@@ -60,7 +62,8 @@ router.get(
   ): Promise<Response> => {
     try {
       const userId = req.params.userId;
-      const user = await db.users.byId(userId);
+      const userRepo = getConnection().getRepository(User);
+      const user = await userRepo.findOne(userId);
 
       if (!user) {
         throw new ResponseError('User not found', 404);
@@ -106,7 +109,8 @@ router.get(
     try {
       const userId = req.params.userId;
       const reverse = req.query.reverse === '1';
-      const user = await db.users.byId(userId);
+      const userRepo = getConnection().getRepository(User);
+      const user = await userRepo.findOne(userId);
 
       if (!user) {
         throw new ResponseError('User not found', 404);

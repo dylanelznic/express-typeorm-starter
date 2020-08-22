@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
+import { User } from 'entities';
+import { ConnectionOptions } from 'typeorm';
 
-import { AppVariables, DBVariables } from './types';
+import { AppVariables } from './types';
 
 dotenv.config();
 
@@ -11,11 +13,14 @@ export const appConfig: AppVariables = {
   },
 };
 
-/** DB config variables */
-export const dbConfig: DBVariables = {
+/** TypeORM config variables */
+export const ormConfig: ConnectionOptions = {
+  type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT, 10),
   database: process.env.DB_DATABASE,
-  user: process.env.DB_USER,
+  username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
+  entities: [User],
+  synchronize: true,
 };
